@@ -1,0 +1,32 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<persistence-unit name="AVCM" transaction-type="RESOURCE_LOCAL">
+		<description>
+            ARQUIVO DE PERSISTÊNCIA JPA E HIBERNATE            
+        </description>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>entity.UsuarioEntity</class>
+		<class>entity.ArbitroEntity</class>
+		<class>entity.AtletaEntity</class>
+		<class>entity.DocumentoEntity</class>
+		<class>entity.TreinadorEntity</class>
+		<class>entity.EquipeEntity</class>
+		<class>entity.PessoaEntity</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/avcm" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="substancia" />
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties>
+
+	</persistence-unit>
+
+</persistence>

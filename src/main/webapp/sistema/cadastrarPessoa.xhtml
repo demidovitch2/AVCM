@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<ui:composition template="/template/layoutBase.xhtml">
+
+
+	<ui:define name="content">
+
+		<p:tabView style="width:100%;height:100%;margin:auto;">
+			<p:tab title="Cadastro de Pessoa">
+
+				<h:form id="form-cadastro">
+
+					<h:panelGrid id="panelGrid-campos-form" columns="2"
+						cellpadding="10">
+
+						<p:outputLabel value="Nome" for="inputText-nome" />
+						<p:inputText id="inputText-nome" style="width:300px"
+							maxlength="70" value="#{cadastrarPessoaController.pessoa.nome}"
+							required="true"
+							requiredMessage="O nome é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Apelido" for="inputText-apelido" />
+						<p:inputText id="inputText-apelido" style="width:300px"
+							maxlength="70"
+							value="#{cadastrarPessoaController.pessoa.apelido}"
+							required="true"
+							requiredMessage="O Apelido é de preenchimento obrigatório" />
+
+
+						<p:outputLabel for="selectOneRadio-sexo" value="Sexo:" />
+						<p:selectOneRadio id="selectOneRadio-sexo"
+							value="#{cadastrarPessoaController.pessoa.genero}"
+							required="true"
+							requiredMessage="O sexo é de preenchimento obrigatório">
+
+							<f:selectItem itemLabel="Masculino" itemValue="M" />
+							<f:selectItem itemLabel="Feminino" itemValue="F" />
+						</p:selectOneRadio>
+
+						<p:outputLabel for="dataNascimento" value="Data de Nascimento" />
+						<p:calendar id="dataNascimento" required="true"
+							requiredMessage="A Data de Nascimento é de preenchimento obrigatório"
+							value="#{cadastrarPessoaController.pessoa.dataNascimento}" />
+
+						<p:outputLabel value="Nacionalidade" for="inputText-nacionalidade" />
+						<p:inputText id="inputText-nacionalidade" style="width:300px"
+							maxlength="70"
+							value="#{cadastrarPessoaController.pessoa.nacionalidade}"
+							required="true"
+							requiredMessage="A Nacionalidade é de preenchimento obrigatório" />
+
+						<p:outputLabel value="Naturalidade" for="inputText-naturalidade" />
+						<p:inputText id="inputText-naturalidade" style="width:300px"
+							maxlength="70"
+							value="#{cadastrarPessoaController.pessoa.naturalidade}"
+							required="true"
+							requiredMessage="A Naturalidade é de preenchimento obrigatório" />
+
+						<p:outputLabel for="selectOneRadio-estado_Civil"
+							value="Estado Civil:" />
+						<p:selectOneRadio id="selectOneRadio-estado_Civil"
+							value="#{cadastrarPessoaController.pessoa.estadoCivil}"
+							required="true"
+							requiredMessage="O Estado Civil é de preenchimento obrigatório">
+
+							<f:selectItem itemLabel="Casado(a)" itemValue="Casado(a)" />
+							<f:selectItem itemLabel="Solteiro(a)" itemValue="Solteiro(a)" />
+							<f:selectItem itemLabel="Viúvo(a)" itemValue="Viúvo(a)" />
+							<f:selectItem itemLabel="Dirciado(a)" itemValue="Dirciado(a)" />
+						</p:selectOneRadio>
+
+						<p:outputLabel value="Nome da Mãe" for="inputText-nomeMae" />
+						<p:inputText id="inputText-nomeMae" style="width:300px"
+							maxlength="70"
+							value="#{cadastrarPessoaController.pessoa.nomeMae}" />
+
+						<p:outputLabel value="Nome do Pai" for="inputText-nomePai" />
+						<p:inputText id="inputText-nomePai" style="width:300px"
+							maxlength="70"
+							value="#{cadastrarPessoaController.pessoa.nomePai}" />
+
+						<p:outputLabel value="Telefone" for="inputText-telefone" />
+						<p:inputText id="inputText-telefone" style="width:300px"
+							maxlength="70"
+							value="#{cadastrarPessoaController.pessoa.telefone}" />
+
+						<p:outputLabel value="Celular" for="inputText-celular" />
+						<p:inputText id="inputText-celular" style="width:300px"
+							maxlength="70"
+							value="#{cadastrarPessoaController.pessoa.celular}" />
+
+
+
+						<p:outputLabel value="E-mail" for="inputText-email" />
+						<p:inputText id="inputText-email" style="width:300px"
+							maxlength="80" value="#{cadastrarPessoaController.pessoa.email}"
+							required="true"
+							requiredMessage="O email é de preenchimento obrigatório" />
+
+
+						<p:outputLabel value="Endereço" for="inputText-endereco" />
+						<p:inputText id="inputText-endereco" style="width:400px"
+							maxlength="200"
+							value="#{cadastrarPessoaController.pessoa.endereco}"
+							required="true"
+							requiredMessage="O endereço é de preenchimento obrigatório" />
+
+						<p:spacer />
+
+						<p:commandButton value="Salvar" id="commandButton-salvar"
+							icon="ui-icon-disk"
+							actionListener="#{cadastrarPessoaController.SalvarNovaPessoa}"
+							update="panelGrid-campos-form" />
+
+
+					</h:panelGrid>
+
+					<p:messages showDetail="true" autoUpdate="true" closable="true"
+						severity="warn" />
+					<p:messages autoUpdate="true" closable="true" severity="error" />
+					<p:messages showDetail="true" autoUpdate="true" closable="true"
+						severity="info" />
+
+				</h:form>
+
+			</p:tab>
+
+		</p:tabView>
+
+
+
+
+
+	</ui:define>
+
+</ui:composition>
+
+
+</html>
