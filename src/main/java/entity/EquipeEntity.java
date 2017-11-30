@@ -9,27 +9,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import model.TreinadorModel;
-
-@Table(name="tb_equipe")
-@Entity	
+@Table(name = "tb_equipe")
+@Entity
 public class EquipeEntity implements Serializable {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_equipe")
+	@Column(name = "id_equipe")
 	private Integer id;
 	private String nome;
 	private String codigo;
-	private TreinadorModel treinador;
+	private TreinadorEntity treinador;
 	private String medico;
 	private String fisioterapeuta;
-	private TreinadorModel treinadorAdjunto;
+	private TreinadorEntity treinadorAdjunto;
 	private String presidente;
 	private String Delegado;
 
@@ -57,11 +55,11 @@ public class EquipeEntity implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public TreinadorModel getTreinador() {
+	public TreinadorEntity getTreinador() {
 		return treinador;
 	}
 
-	public void setTreinador(TreinadorModel treinador) {
+	public void setTreinador(TreinadorEntity treinador) {
 		this.treinador = treinador;
 	}
 
@@ -81,11 +79,11 @@ public class EquipeEntity implements Serializable {
 		this.fisioterapeuta = fisioterapeuta;
 	}
 
-	public TreinadorModel getTreinadorAdjunto() {
+	public TreinadorEntity getTreinadorAdjunto() {
 		return treinadorAdjunto;
 	}
 
-	public void setTreinadorAdjunto(TreinadorModel treinadorAdjunto) {
+	public void setTreinadorAdjunto(TreinadorEntity treinadorAdjunto) {
 		this.treinadorAdjunto = treinadorAdjunto;
 	}
 
@@ -104,6 +102,5 @@ public class EquipeEntity implements Serializable {
 	public void setDelegado(String delegado) {
 		Delegado = delegado;
 	}
-
 
 }

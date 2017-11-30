@@ -12,24 +12,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Table(name="tb_atleta")
-@Entity	
+@Table(name = "tb_atleta")
+@Entity
 public class AtletaEntity implements Serializable {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_atleta")
+	@Column(name = "id_atleta")
 	private Integer id;
-    private PessoaEntity pessoa;
-    private String posicao;
-    private String escalao;
-    private double altura;
-    private double peso;
+	private PessoaEntity pessoa;
+	private String posicao;
+	private String escalao;
+	private double altura;
+	private double peso;
 
 	public Integer getId() {
 		return id;
@@ -39,8 +39,8 @@ public class AtletaEntity implements Serializable {
 		this.id = id;
 	}
 
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="pessoa_atleta")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "pessoa_atleta")
 	public PessoaEntity getPessoa() {
 		return pessoa;
 	}
@@ -80,7 +80,5 @@ public class AtletaEntity implements Serializable {
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-
-    
 
 }

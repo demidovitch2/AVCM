@@ -2,7 +2,7 @@ package filters;
 
 
 import java.io.IOException;
- 
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -28,6 +28,10 @@ public class JPAFilter implements Filter {
  
     public JPAFilter() {
  
+    }
+    
+    public EntityManager getEntityManager(){
+    	return entityManagerFactory.createEntityManager();
     }
  
 	public void destroy() {

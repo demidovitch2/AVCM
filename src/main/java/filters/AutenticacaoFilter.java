@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.UsuarioModel;
+import entity.UsuarioEntity;
 
 @WebFilter("/sistema/*")
 public class AutenticacaoFilter implements Filter {
@@ -37,7 +37,7 @@ public class AutenticacaoFilter implements Filter {
 
 		if (httpServletRequest.getRequestURI().indexOf("index.xhtml") <= -1) {
 
-			UsuarioModel usuarioModel = (UsuarioModel) httpSession.getAttribute("usuarioAutenticado");
+			UsuarioEntity usuarioModel = (UsuarioEntity) httpSession.getAttribute("usuarioAutenticado");
 
 			if (usuarioModel == null) {
 

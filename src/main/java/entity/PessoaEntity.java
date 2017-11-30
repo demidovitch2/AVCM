@@ -2,7 +2,9 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -43,13 +45,18 @@ public class PessoaEntity implements Serializable {
 	private byte[] imagem;
 	private String imagemPath;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_documento_pessoa")
-	private DocumentoEntity documento;
+	private DocumentoEntity documento = new DocumentoEntity();
 
 	@OneToOne
 	@JoinColumn(name = "id_usuario_cadastro")
 	private UsuarioEntity usuarioEntity;
+	
+	 public PessoaEntity() {
+			// TODO Auto-generated constructor stub
+			 this.id = UUID.randomUUID().toString();
+		}
 
 	public String getId() {
 		return id;
