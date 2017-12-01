@@ -45,23 +45,20 @@
 
 					<p:outputLabel value="Nacionalidade" for="inputText-nacionalidade" />
 					<p:inputText id="inputText-nacionalidade" style="width:300px"
-						maxlength="70"
-						value="#{atletaController.pessoa.nacionalidade}"
+						maxlength="70" value="#{atletaController.pessoa.nacionalidade}"
 						required="true"
 						requiredMessage="A Nacionalidade é de preenchimento obrigatório" />
 
 					<p:outputLabel value="Naturalidade" for="inputText-naturalidade" />
 					<p:inputText id="inputText-naturalidade" style="width:300px"
-						maxlength="70"
-						value="#{atletaController.pessoa.naturalidade}"
+						maxlength="70" value="#{atletaController.pessoa.naturalidade}"
 						required="true"
 						requiredMessage="A Naturalidade é de preenchimento obrigatório" />
 
 					<p:outputLabel for="selectOneRadio-estado_Civil"
 						value="Estado Civil:" />
 					<p:selectOneRadio id="selectOneRadio-estado_Civil"
-						value="#{atletaController.pessoa.estadoCivil}"
-						required="true"
+						value="#{atletaController.pessoa.estadoCivil}" required="true"
 						requiredMessage="O Estado Civil é de preenchimento obrigatório">
 
 						<f:selectItem itemLabel="Casado(a)" itemValue="Casado(a)" />
@@ -80,8 +77,7 @@
 
 					<p:outputLabel value="Telefone" for="inputText-telefone" />
 					<p:inputText id="inputText-telefone" style="width:300px"
-						maxlength="70"
-						value="#{atletaController.pessoa.telefone}" />
+						maxlength="70" value="#{atletaController.pessoa.telefone}" />
 
 					<p:outputLabel value="Celular" for="inputText-celular" />
 					<p:inputText id="inputText-celular" style="width:300px"
@@ -98,8 +94,7 @@
 
 					<p:outputLabel value="Endereço" for="inputText-endereco" />
 					<p:inputText id="inputText-endereco" style="width:400px"
-						maxlength="200"
-						value="#{atletaController.pessoa.endereco}"
+						maxlength="200" value="#{atletaController.pessoa.endereco}"
 						required="true"
 						requiredMessage="O endereço é de preenchimento obrigatório" />
 
@@ -126,8 +121,7 @@
 
 					<p:outputLabel value="Número" for="inputText-numero" />
 					<p:inputText id="inputText-numero" style="width:400px"
-						maxlength="15"
-						value="#{atletaController.pessoa.documento.numero}"
+						maxlength="15" value="#{atletaController.pessoa.documento.numero}"
 						required="true"
 						requiredMessage="O Número é de preenchimento obrigatório" />
 
@@ -161,11 +155,40 @@
 						requiredMessage="O Local de Emissão é de preenchimento obrigatório" />
 					<p:spacer />
 					<p:messages closable="true" />
-					
+
 					<p:separator />
 					<p:separator />
-					
-					
+
+					<p:outputLabel value="Escalão" for="inputText-escalao" />
+					<p:selectOneMenu rendered="true" id="inputText-escalao"
+						style="width:400px" maxlength="9"
+						value="#{atletaController.atletaEntity.escalao}">
+						<f:selectItem itemLabel="Escolha Escalão" noSelectionOption="true" />
+						<f:selectItem itemLabel="Juvenil" itemValue="Juvenil" />
+						<f:selectItem itemLabel="Júnior" itemValue="Júnior" />
+						<f:selectItem itemLabel="Sénior" itemValue="Sénior" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Posição" for="inputText-posicao" />
+					<p:selectOneMenu rendered="true" id="inputText-posicao"
+						style="width:400px" maxlength="9"
+						value="#{atletaController.atletaEntity.posicao}">
+						<f:selectItem itemLabel="Escolha a Posição"
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="Líbero" itemValue="Líbero" />
+						<f:selectItem itemLabel="Meio de Rede" itemValue="Meio de Rede" />
+						<f:selectItem itemLabel="Oposto" itemValue="Oposto" />
+						<f:selectItem itemLabel="Ponta" itemValue="Ponta" />
+						<f:selectItem itemLabel="Passador" itemValue="Passador" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Altura" for="inputText-altura" />
+					<p:inputText id="inputText-altura" style="width:400px"
+						maxlength="15" value="#{atletaController.atletaEntity.altura}" />
+
+					<p:outputLabel value="Peso" for="inputText-peso" />
+					<p:inputText id="inputText-peso" style="width:400px" maxlength="15"
+						value="#{atletaController.atletaEntity.peso}" />
 				</p:panelGrid>
 
 				<p:toolbar>

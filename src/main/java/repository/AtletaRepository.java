@@ -28,6 +28,9 @@ public class AtletaRepository {
 	}
 
 	public void salvarAtleta(AtletaEntity atletaEntity) {
+		
+		PessoaEntity pessoaEntity = entityManager.find(PessoaEntity.class, atletaEntity.getPessoa().getId());
+		atletaEntity.setPessoa(pessoaEntity);
 
 		EntityTransaction tx = entityManager.getTransaction();
 

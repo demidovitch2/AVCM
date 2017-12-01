@@ -7,6 +7,7 @@ import javax.inject.Named;
 import entity.AtletaEntity;
 import entity.PessoaEntity;
 import repository.AtletaRepository;
+import repository.PessoaRepository;
 import util.Uteis;
 
 @Named(value = "atletaController")
@@ -17,7 +18,13 @@ public class AtletaController {
 	private PessoaEntity pessoa = new PessoaEntity();
 
 	@Inject
+	UsuarioController usuarioController;
+
+	@Inject
 	AtletaRepository atletaRepository;
+
+	@Inject
+	PessoaRepository pessoaRepository;
 
 	public AtletaEntity getAtletaEntity() {
 		return atletaEntity;
@@ -37,9 +44,16 @@ public class AtletaController {
 
 	public void salvarNovoAtleta() {
 
+		pessoa.setUsuarioEntity(this.usuarioController.GetUsuarioSession());
+
+		pessoaRepository.SalvarPessoa(pessoa);
+
+		atletaEntity.setPessoa(pessoa);
+
 		atletaRepository.salvarAtleta(atletaEntity);
 
 		atletaEntity = new AtletaEntity();
+
 		pessoa = new PessoaEntity();
 
 		Uteis.MensagemInfo("Atleta Cadastrado com Sucesso");

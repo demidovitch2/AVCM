@@ -40,7 +40,7 @@ public class Uteis {
 
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", mensagem));
+		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, mensagem, "Sucesso"));
 	}
 
 }

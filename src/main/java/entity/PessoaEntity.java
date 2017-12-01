@@ -2,11 +2,12 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
@@ -25,8 +26,9 @@ public class PessoaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pessoa")
-	private String id;
+	private Integer id;
 	@Column(name = "nm_pessoa")
 	private String nome;
 	private String apelido;
@@ -45,24 +47,23 @@ public class PessoaEntity implements Serializable {
 	private byte[] imagem;
 	private String imagemPath;
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_documento_pessoa")
 	private DocumentoEntity documento = new DocumentoEntity();
 
 	@OneToOne
 	@JoinColumn(name = "id_usuario_cadastro")
 	private UsuarioEntity usuarioEntity;
-	
-	 public PessoaEntity() {
-			// TODO Auto-generated constructor stub
-			 this.id = UUID.randomUUID().toString();
-		}
 
-	public String getId() {
+	public PessoaEntity() {
+
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

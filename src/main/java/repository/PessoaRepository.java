@@ -39,13 +39,13 @@ public class PessoaRepository {
 	 */
 	public void SalvarPessoa(PessoaEntity pessoa) {
 		
-		UsuarioEntity usuarioEntity = entityManager.find(UsuarioEntity.class, pessoa.getUsuarioEntity().getId());
-		pessoaEntity.setUsuarioEntity(usuarioEntity);
+		/*UsuarioEntity usuarioEntity = entityManager.find(UsuarioEntity.class, pessoa.getUsuarioEntity().getId());
+		pessoaEntity.setUsuarioEntity(usuarioEntity);*/
 
 		EntityTransaction tx = entityManager.getTransaction();
 
 		tx.begin();
-		entityManager.persist(pessoaEntity);
+		entityManager.persist(pessoa);
 
 		tx.commit();
 	}
