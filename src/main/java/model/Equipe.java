@@ -1,41 +1,56 @@
-package entity;
+package model;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Table(name = "tb_equipe")
 @Entity
-public class EquipeEntity implements Serializable {
+@Table(name = "tb_equipe")
+@NamedQueries({ @NamedQuery(name = "Equipe.findAll", query = "SELECT p FROM Equipe p") })
+public class Equipe implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
+	// Atributos da Classe
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_equipe")
-	private Integer id;
+	private Long id;
 	private String nome;
 	private String codigo;
-	private TreinadorEntity treinador;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_treinador")
+	private Treinador treinador;
 	private String medico;
 	private String fisioterapeuta;
-	private TreinadorEntity treinadorAdjunto;
-	private String presidente;
-	private String Delegado;
 
-	public Integer getId() {
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_treinadorAdjunto")
+	private Treinador treinadorAdjunto;
+	private String presidente;
+	private String delegado;
+
+	@OneToMany(targetEntity = Atleta.class, mappedBy = "equipe", fetch = FetchType.EAGER)
+	private List<Atleta> atletas;
+
+	// Métodos Getters e Setters
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -55,11 +70,11 @@ public class EquipeEntity implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public TreinadorEntity getTreinador() {
+	public Treinador getTreinador() {
 		return treinador;
 	}
 
-	public void setTreinador(TreinadorEntity treinador) {
+	public void setTreinador(Treinador treinador) {
 		this.treinador = treinador;
 	}
 
@@ -79,11 +94,11 @@ public class EquipeEntity implements Serializable {
 		this.fisioterapeuta = fisioterapeuta;
 	}
 
-	public TreinadorEntity getTreinadorAdjunto() {
+	public Treinador getTreinadorAdjunto() {
 		return treinadorAdjunto;
 	}
 
-	public void setTreinadorAdjunto(TreinadorEntity treinadorAdjunto) {
+	public void setTreinadorAdjunto(Treinador treinadorAdjunto) {
 		this.treinadorAdjunto = treinadorAdjunto;
 	}
 
@@ -96,11 +111,19 @@ public class EquipeEntity implements Serializable {
 	}
 
 	public String getDelegado() {
-		return Delegado;
+		return delegado;
 	}
 
 	public void setDelegado(String delegado) {
-		Delegado = delegado;
+		this.delegado = delegado;
+	}
+
+	public List<Atleta> getAtletas() {
+		return atletas;
+	}
+
+	public void setAtletas(List<Atleta> atletas) {
+		this.atletas = atletas;
 	}
 
 }

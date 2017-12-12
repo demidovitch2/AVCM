@@ -9,7 +9,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import entity.PessoaEntity;
+import model.Pessoa;
 import repository.PessoaRepository;
 
 @Named(value = "consultarPessoaController")
@@ -22,27 +22,27 @@ public class ConsultarPessoaController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	transient private PessoaEntity pessoaModel;
+	transient private Pessoa pessoaModel;
 
 	@Produces
-	private List<PessoaEntity> pessoas;
+	private List<Pessoa> pessoas;
 
 	@Inject
 	transient private PessoaRepository pessoaRepository;
 
-	public List<PessoaEntity> getPessoas() {
+	public List<Pessoa> getPessoas() {
 		return pessoas;
 	}
 
-	public void setPessoas(List<PessoaEntity> pessoas) {
+	public void setPessoas(List<Pessoa> pessoas) {
 		this.pessoas = pessoas;
 	}
 
-	public PessoaEntity getPessoa() {
+	public Pessoa getPessoa() {
 		return pessoaModel;
 	}
 
-	public void setPessoa(PessoaEntity pessoaModel) {
+	public void setPessoa(Pessoa pessoaModel) {
 		this.pessoaModel = pessoaModel;
 	}
 

@@ -1,60 +1,56 @@
-package entity;
+package model;
 
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Table(name = "tb_atleta")
 @Entity
-public class AtletaEntity implements Serializable {
+@NamedQueries({ @NamedQuery(name = "Atleta.findAll", query = "SELECT p FROM Atleta p") })
+public class Atleta implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_atleta")
-	private Integer id;
-	private PessoaEntity pessoa;
-	private String posicao;
+	private Long id;
+	private String Posicao;
 	private String escalao;
 	private double altura;
 	private double peso;
 
-	public Integer getId() {
+	@ManyToOne
+	@JoinColumn(name = "id_equipe")
+	private Equipe equipe;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_pessoa")
+	private Pessoa pessoa;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "pessoa_atleta")
-	public PessoaEntity getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(PessoaEntity pessoa) {
-		this.pessoa = pessoa;
-	}
-
 	public String getPosicao() {
-		return posicao;
+		return Posicao;
 	}
 
 	public void setPosicao(String posicao) {
-		this.posicao = posicao;
+		Posicao = posicao;
 	}
 
 	public String getEscalao() {
@@ -79,6 +75,22 @@ public class AtletaEntity implements Serializable {
 
 	public void setPeso(double peso) {
 		this.peso = peso;
+	}
+
+	public Equipe getEquipe() {
+		return equipe;
+	}
+
+	public void setEquipe(Equipe equipe) {
+		this.equipe = equipe;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 }

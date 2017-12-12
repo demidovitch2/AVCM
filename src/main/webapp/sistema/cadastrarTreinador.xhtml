@@ -11,28 +11,27 @@
 
 	<ui:define name="content">
 		<h:form id="frm">
-			<h1 align="center">REGISTO DE ATLETA</h1>
+			<h1 align="center">REGISTO DE TREINADOR</h1>
 
 			<div class="ui-fluid">
-				<p:panelGrid columns="4" layout="grid" style="margin-top: 20px;"
+				<p:panelGrid columns="2" layout="grid" style="margin-top: 20px;"
 					styleClass="panelgrid-noborder"
-					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-3">
+					columnClasses="ui-grid-col-2, ui-grid-col-4">
 
 					<p:outputLabel value="Nome" for="inputText-nome" />
 					<p:inputText id="inputText-nome" style="width:300px" maxlength="70"
-						value="#{atletaController.pessoa.nome}" required="true"
+						value="#{treinadorController.pessoa.nome}" required="true"
 						requiredMessage="O nome é de preenchimento obrigatório" />
 
 					<p:outputLabel value="Apelido" for="inputText-apelido" />
 					<p:inputText id="inputText-apelido" style="width:300px"
-						maxlength="70" value="#{atletaController.pessoa.apelido}"
+						maxlength="70" value="#{treinadorController.pessoa.apelido}"
 						required="true"
 						requiredMessage="O Apelido é de preenchimento obrigatório" />
 
-
 					<p:outputLabel for="selectOneRadio-sexo" value="Sexo:" />
-					<p:selectOneRadio id="selectOneRadio-sexo" style="width:300px"
-						value="#{atletaController.pessoa.genero}" required="true"
+					<p:selectOneRadio id="selectOneRadio-sexo"
+						value="#{treinadorController.pessoa.genero}" required="true"
 						requiredMessage="O sexo é de preenchimento obrigatório">
 
 						<f:selectItem itemLabel="Masculino" itemValue="M" />
@@ -40,26 +39,26 @@
 					</p:selectOneRadio>
 
 					<p:outputLabel for="dataNascimento" value="Data de Nascimento" />
-					<p:calendar id="dataNascimento" required="true" style="width:300px"
+					<p:calendar id="dataNascimento" style="width:300px" required="true"
 						requiredMessage="A Data de Nascimento é de preenchimento obrigatório"
-						value="#{atletaController.pessoa.dataNascimento}" />
+						value="#{treinadorController.pessoa.dataNascimento}" />
 
 					<p:outputLabel value="Nacionalidade" for="inputText-nacionalidade" />
 					<p:inputText id="inputText-nacionalidade" style="width:300px"
-						maxlength="70" value="#{atletaController.pessoa.nacionalidade}"
+						maxlength="70" value="#{treinadorController.pessoa.nacionalidade}"
 						required="true"
 						requiredMessage="A Nacionalidade é de preenchimento obrigatório" />
 
 					<p:outputLabel value="Naturalidade" for="inputText-naturalidade" />
 					<p:inputText id="inputText-naturalidade" style="width:300px"
-						maxlength="70" value="#{atletaController.pessoa.naturalidade}"
+						maxlength="70" value="#{treinadorController.pessoa.naturalidade}"
 						required="true"
 						requiredMessage="A Naturalidade é de preenchimento obrigatório" />
 
 					<p:outputLabel for="selectOneRadio-estado_Civil"
 						value="Estado Civil:" />
 					<p:selectOneRadio id="selectOneRadio-estado_Civil"
-						value="#{atletaController.pessoa.estadoCivil}" required="true"
+						value="#{treinadorController.pessoa.estadoCivil}" required="true"
 						requiredMessage="O Estado Civil é de preenchimento obrigatório">
 
 						<f:selectItem itemLabel="Casado(a)" itemValue="Casado(a)" />
@@ -70,43 +69,44 @@
 
 					<p:outputLabel value="Nome da Mãe" for="inputText-nomeMae" />
 					<p:inputText id="inputText-nomeMae" style="width:300px"
-						maxlength="70" value="#{atletaController.pessoa.nomeMae}" />
+						maxlength="70" value="#{treinadorController.pessoa.nomeMae}" />
 
 					<p:outputLabel value="Nome do Pai" for="inputText-nomePai" />
 					<p:inputText id="inputText-nomePai" style="width:300px"
-						maxlength="70" value="#{atletaController.pessoa.nomePai}" />
+						maxlength="70" value="#{treinadorController.pessoa.nomePai}" />
 
 					<p:outputLabel value="Telefone" for="inputText-telefone" />
 					<p:inputText id="inputText-telefone" style="width:300px"
-						maxlength="70" value="#{atletaController.pessoa.telefone}" />
+						maxlength="70" value="#{treinadorController.pessoa.telefone}" />
 
 					<p:outputLabel value="Celular" for="inputText-celular" />
 					<p:inputText id="inputText-celular" style="width:300px"
-						maxlength="70" value="#{atletaController.pessoa.celular}" />
-
-
+						maxlength="70" value="#{treinadorController.pessoa.celular}" />
 
 					<p:outputLabel value="E-mail" for="inputText-email" />
 					<p:inputText id="inputText-email" style="width:300px"
-						maxlength="80" value="#{atletaController.pessoa.email}"
+						maxlength="80" value="#{treinadorController.pessoa.email}"
 						required="true"
 						requiredMessage="O email é de preenchimento obrigatório" />
 
 
 					<p:outputLabel value="Endereço" for="inputText-endereco" />
 					<p:inputText id="inputText-endereco" style="width:300px"
-						maxlength="200" value="#{atletaController.pessoa.endereco}"
+						maxlength="200" value="#{treinadorController.pessoa.endereco}"
 						required="true"
 						requiredMessage="O endereço é de preenchimento obrigatório" />
 
 					<p:outputLabel value="NUIT" for="inputText-nuit" />
 					<p:inputText id="inputText-nuit" style="width:300px" maxlength="9"
-						value="#{atletaController.pessoa.nuit}" />
+						value="#{treinadorController.pessoa.nuit}" />
+
+					<p:separator />
+					<p:separator />
 
 					<p:outputLabel value="Documento" for="inputText-documento" />
 					<p:selectOneMenu rendered="true" id="inputText-documento"
 						style="width:300px" maxlength="9"
-						value="#{atletaController.pessoa.documento.tipo}">
+						value="#{treinadorController.pessoa.documento.tipo}">
 						<f:selectItem itemLabel="Escolha o Tipo" noSelectionOption="true" />
 						<f:selectItem itemLabel="Bilhete de Identidade"
 							itemValue="Bilhete de Identidade" />
@@ -119,14 +119,15 @@
 
 					<p:outputLabel value="Número" for="inputText-numero" />
 					<p:inputText id="inputText-numero" style="width:300px"
-						maxlength="15" value="#{atletaController.pessoa.documento.numero}"
+						maxlength="15"
+						value="#{treinadorController.pessoa.documento.numero}"
 						required="true"
 						requiredMessage="O Número é de preenchimento obrigatório" />
 
 					<p:outputLabel value="Estado do Documeto"
 						for="selectOneRadio-estdoDocumento" />
 					<p:selectOneRadio id="selectOneRadio-estdoDocumento"
-						value="#{atletaController.pessoa.documento.estadoDcumento}"
+						value="#{treinadorController.pessoa.documento.estadoDcumento}"
 						required="true"
 						requiredMessage="O Estado do Documento é de preenchimento obrigatório">
 
@@ -137,71 +138,40 @@
 					<p:outputLabel for="dataEmissao" value="Data de Emissão" />
 					<p:calendar id="dataEmissao" required="true" style="width:300px"
 						requiredMessage="A Data de Emissão é de preenchimento obrigatório"
-						value="#{atletaController.pessoa.documento.dataEmissao}" />
+						value="#{treinadorController.pessoa.documento.dataEmissao}" />
 
 					<p:outputLabel for="dataValidade" value="Data de Validade" />
 					<p:calendar id="dataValidade" required="true" style="width:300px"
 						requiredMessage="A Data de Validade é de preenchimento obrigatório"
-						value="#{atletaController.pessoa.documento.dataValidade}" />
+						value="#{treinadorController.pessoa.documento.dataValidade}" />
 
 					<p:outputLabel value="Local de Emissão"
 						for="inputText-localemissao" />
 					<p:inputText id="inputText-localemissao" style="width:300px"
 						maxlength="200"
-						value="#{atletaController.pessoa.documento.localEmissao}"
+						value="#{treinadorController.pessoa.documento.localEmissao}"
 						required="true"
 						requiredMessage="O Local de Emissão é de preenchimento obrigatório" />
 					<p:spacer />
 					<p:messages closable="true" />
 
-					<p:separator />
-					<p:separator />
-
-					<p:outputLabel for="selectEquipe" value="Equipe" />
-					<p:selectOneMenu id="selectEquipe"
-						value="#{atletaController.atleta.equipe}">
-						<f:selectItem itemLabel="Seleccione a Equipe"
+					<p:outputLabel value="Nível de Treinador" for="nivelTreinador" />
+					<p:selectOneMenu id="nivelTreinador" style="width:300px"
+						value="#{treinadorController.treinador.nivel}">
+						<f:selectItem itemLabel="Seleccione o Nível"
 							noSelectionOption="true" />
-						<f:selectItems value="#{atletaController.equipes}"></f:selectItems>
+						<f:selectItem itemLabel="I" itemValue="I" />
+						<f:selectItem itemLabel="II" itemValue="II" />
+						<f:selectItem itemLabel="III" itemValue="III" />
 					</p:selectOneMenu>
 
-					<p:outputLabel value="Escalão" for="inputText-escalao" />
-					<p:selectOneMenu rendered="true" id="inputText-escalao"
-						style="width:300px" maxlength="9"
-						value="#{atletaController.atleta.escalao}">
-						<f:selectItem itemLabel="Escolha Escalão" noSelectionOption="true" />
-						<f:selectItem itemLabel="Juvenil" itemValue="Juvenil" />
-						<f:selectItem itemLabel="Júnior" itemValue="Júnior" />
-						<f:selectItem itemLabel="Sénior" itemValue="Sénior" />
-					</p:selectOneMenu>
-
-					<p:outputLabel value="Posição" for="inputText-posicao" />
-					<p:selectOneMenu rendered="true" id="inputText-posicao"
-						style="width:300px" maxlength="9"
-						value="#{atletaController.atleta.posicao}">
-						<f:selectItem itemLabel="Escolha a Posição"
-							noSelectionOption="true" />
-						<f:selectItem itemLabel="Líbero" itemValue="Líbero" />
-						<f:selectItem itemLabel="Meio de Rede" itemValue="Meio de Rede" />
-						<f:selectItem itemLabel="Oposto" itemValue="Oposto" />
-						<f:selectItem itemLabel="Ponta" itemValue="Ponta" />
-						<f:selectItem itemLabel="Passador" itemValue="Passador" />
-					</p:selectOneMenu>
-
-					<p:outputLabel value="Altura" for="inputText-altura" />
-					<p:inputText id="inputText-altura" style="width:300px"
-						maxlength="15" value="#{atletaController.atleta.altura}" />
-
-					<p:outputLabel value="Peso" for="inputText-peso" />
-					<p:inputText id="inputText-peso" style="width:300px" maxlength="15"
-						value="#{atletaController.atleta.peso}" />
 				</p:panelGrid>
 
 				<p:toolbar>
 					<p:toolbarGroup>
 						<p:commandButton value="Salvar" id="commandButton-salvar"
 							icon="ui-icon-disk"
-							actionListener="#{atletaController.salvarNovoAtleta}"
+							actionListener="#{treinadorController.salvarNovoTreinador}"
 							update="frm" />
 					</p:toolbarGroup>
 				</p:toolbar>

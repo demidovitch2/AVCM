@@ -4,8 +4,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import entity.DocumentoEntity;
-import entity.PessoaEntity;
+import model.Documento;
+import model.Pessoa;
 import repository.PessoaRepository;
 import util.Uteis;
 
@@ -13,28 +13,28 @@ import util.Uteis;
 @RequestScoped
 public class CadastrarPessoaController {
 
-	private PessoaEntity pessoa = new PessoaEntity();
-	private DocumentoEntity documento = new DocumentoEntity();
+	private Pessoa pessoa = new Pessoa();
+	private Documento documento = new Documento();
 
 	@Inject
-	private UsuarioController usuarioController;
+	private UtilizadorController usuarioController;
 
 	@Inject
 	PessoaRepository pessoaRepository;
 
-	public PessoaEntity getPessoa() {
+	public Pessoa getPessoa() {
 		return pessoa;
 	}
 
-	public void setPessoa(PessoaEntity pessoa) {
+	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
 
-	public DocumentoEntity getDocumento() {
+	public Documento getDocumento() {
 		return documento;
 	}
 
-	public void setDocumento(DocumentoEntity documento) {
+	public void setDocumento(Documento documento) {
 		this.documento = documento;
 	}
 
@@ -42,14 +42,14 @@ public class CadastrarPessoaController {
 	 * 
 	 */
 	public void SalvarNovaPessoa() {
-		pessoa.setUsuarioEntity(this.usuarioController.GetUsuarioSession());
+		pessoa.setUtilizador(this.usuarioController.GetUtilizadorSession());
 
 		// pessoa.setDocumento(documento);
 
 		pessoaRepository.SalvarPessoa(pessoa);
 
-		this.pessoa = new PessoaEntity();
-		this.documento = new DocumentoEntity();
+		this.pessoa = new Pessoa();
+		this.documento = new Documento();
 
 		Uteis.MensagemInfo("Pessoa Cadastrada com Sucesso");
 	}

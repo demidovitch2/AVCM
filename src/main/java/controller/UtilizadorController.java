@@ -9,37 +9,45 @@ import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 
-import entity.UsuarioEntity;
-import repository.UsuarioRepository;
+import model.Utilizador;
+import repository.UtilizadorRepository;
 import util.Uteis;
 
-@Named(value = "usuarioController")
+@Named(value = "utilizadorController")
 @SessionScoped
-public class UsuarioController implements Serializable {
+public class UtilizadorController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private UsuarioEntity usuarioModel = new UsuarioEntity();
+	private Utilizador usuarioModel = new Utilizador();
 
 	@Inject
-	private UsuarioRepository usuarioRepository;
+	private UtilizadorRepository usuarioRepository;
 
 	@Inject
-	private UsuarioEntity usuarioEntity;
+	private Utilizador utilizador;
 
-	public UsuarioEntity getUsuarioModel() {
+	public Utilizador getUsuarioModel() {
 		return usuarioModel;
 	}
 
-	public void setUsuarioModel(UsuarioEntity usuarioModel) {
+	public void setUsuarioModel(Utilizador usuarioModel) {
 		this.usuarioModel = usuarioModel;
 	}
+	
+	public Utilizador getUtilizador() {
+		return utilizador;
+	}
 
-	public UsuarioEntity GetUsuarioSession() {
+	public void setUtilizador(Utilizador utilizador) {
+		this.utilizador = utilizador;
+	}
+
+	public Utilizador GetUtilizadorSession() {
 
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 
-		return (UsuarioEntity) facesContext.getExternalContext().getSessionMap().get("usuarioAutenticado");
+		return (Utilizador) facesContext.getExternalContext().getSessionMap().get("usuarioAutenticado");
 	}
 
 	public String Logout() {
@@ -51,7 +59,7 @@ public class UsuarioController implements Serializable {
 
 	public String EfetuarLogin() {
 
-		if (StringUtils.isEmpty(usuarioModel.getUsuario()) || StringUtils.isBlank(usuarioModel.getUsuario())) {
+		if (StringUtils.isEmpty(usuarioModel.getUtilizador()) || StringUtils.isBlank(usuarioModel.getUtilizador())) {
 
 			Uteis.Mensagem("Favor informar o login!");
 			return null;
@@ -61,12 +69,12 @@ public class UsuarioController implements Serializable {
 			return null;
 		} else {
 
-			usuarioEntity = usuarioRepository.ValidaUsuario(usuarioModel);
+			utilizador = usuarioRepository.ValidaUsuario(usuarioModel);
 
-			if (usuarioEntity != null) {
+			if (utilizador != null) {
 
 				usuarioModel.setSenha(null);
-				usuarioModel.setId(usuarioEntity.getId());
+				usuarioModel.setId(utilizador.getId());
 
 				FacesContext facesContext = FacesContext.getCurrentInstance();
 

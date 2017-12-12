@@ -4,16 +4,12 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import entity.AtletaEntity;
-import entity.PessoaEntity;
+import model.Atleta;
 
 public class AtletaRepository {
 
 	@Inject
-	AtletaEntity atletaEntity;
-
-	@Inject
-	PessoaEntity pessoaEntity;
+	Atleta atleta;
 
 	private EntityManager entityManager;
 
@@ -27,15 +23,12 @@ public class AtletaRepository {
 
 	}
 
-	public void salvarAtleta(AtletaEntity atletaEntity) {
-		
-		PessoaEntity pessoaEntity = entityManager.find(PessoaEntity.class, atletaEntity.getPessoa().getId());
-		atletaEntity.setPessoa(pessoaEntity);
+	public void salvarAtleta(Atleta atleta) {
 
 		EntityTransaction tx = entityManager.getTransaction();
 
 		tx.begin();
-		entityManager.persist(atletaEntity);
+		entityManager.persist(atleta);
 		tx.commit();
 	}
 

@@ -4,12 +4,12 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import entity.DocumentoEntity;
+import model.Documento;
 
 public class DocumentoRepository {
 
 	@Inject
-	DocumentoEntity documentoEntity;
+	Documento documento;
 
 	private EntityManager entityManager;
 
@@ -26,13 +26,13 @@ public class DocumentoRepository {
 	 * 
 	 * @param documento
 	 */
-	public void SalvarDocumento(DocumentoEntity documento) {
+	public void SalvarDocumento(Documento documento) {
 
 		EntityTransaction tx = entityManager.getTransaction();
 
 		tx.begin();
 
-		entityManager.persist(documentoEntity);
+		entityManager.persist(documento);
 
 		tx.commit();
 	}

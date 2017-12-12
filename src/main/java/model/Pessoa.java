@@ -1,10 +1,9 @@
-package entity;
+package model;
 
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,21 +14,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity
 @Table(name = "tb_pessoa")
-@NamedQueries({ @NamedQuery(name = "PessoaEntity.findAll", query = "SELECT p FROM PessoaEntity p") })
-public class PessoaEntity implements Serializable {
+@Entity
+@NamedQueries({ @NamedQuery(name = "Pessoa.findAll", query = "SELECT p FROM Pessoa p") })
+public class Pessoa implements Serializable {
 
-	/**
-	 * 
-	 */
+	// Atributos da Classe
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_pessoa")
-	private Integer id;
-	@Column(name = "nm_pessoa")
+	private Long id;
 	private String nome;
 	private String apelido;
 	private String genero;
@@ -48,22 +43,19 @@ public class PessoaEntity implements Serializable {
 	private String imagemPath;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_documento_pessoa")
-	private DocumentoEntity documento = new DocumentoEntity();
+	@JoinColumn(name = "id_documento")
+	private Documento documento = new Documento();
 
 	@OneToOne
-	@JoinColumn(name = "id_usuario_cadastro")
-	private UsuarioEntity usuarioEntity;
+	@JoinColumn(name = "id_utilizador")
+	private Utilizador utilizador;
 
-	public PessoaEntity() {
-
-	}
-
-	public Integer getId() {
+	// Métodos Getters e Setters
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -195,29 +187,24 @@ public class PessoaEntity implements Serializable {
 		this.imagemPath = imagemPath;
 	}
 
-	public DocumentoEntity getDocumento() {
+	public Documento getDocumento() {
 		return documento;
 	}
 
-	public void setDocumento(DocumentoEntity documento) {
+	public void setDocumento(Documento documento) {
 		this.documento = documento;
 	}
 
-	public UsuarioEntity getUsuarioEntity() {
-		return usuarioEntity;
+	public Utilizador getUtilizador() {
+		return utilizador;
 	}
 
-	public void setUsuarioEntity(UsuarioEntity usuarioEntity) {
-		this.usuarioEntity = usuarioEntity;
-	}
-
-	public String getNomeAndApelido() {
-		return (getNome() + " " + (getApelido() != null ? getApelido() : "")).trim();
+	public void setUtilizador(Utilizador usuarioEntity) {
+		this.utilizador = usuarioEntity;
 	}
 
 	@Override
 	public String toString() {
 		return getNome() + " " + (getApelido() != null ? getApelido() : "").trim();
 	}
-
 }

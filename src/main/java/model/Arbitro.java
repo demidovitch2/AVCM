@@ -1,38 +1,39 @@
-package entity;
+package model;
 
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Table(name="tb_treinador")
-@Entity	
-public class TreinadorEntity implements Serializable {
-	
-	/**
-	 * 
-	 */
+@Table(name = "tb_arbitro")
+@Entity
+@NamedQueries({ @NamedQuery(name = "Arbitro.findAll", query = "SELECT p FROM Arbitro p") })
+public class Arbitro implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_treinador")
-	private Integer id;
-	private PessoaEntity pessoa;
+	private Long id;
 	private String nivel;
 
-	public Integer getId() {
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_pessoa")
+	private Pessoa pessoa;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -44,15 +45,12 @@ public class TreinadorEntity implements Serializable {
 		this.nivel = nivel;
 	}
 
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="pessoa_treinador")
-	public PessoaEntity getPessoa() {
+	public Pessoa getPessoa() {
 		return pessoa;
 	}
 
-	public void setPessoa(PessoaEntity pessoa) {
+	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-
 
 }

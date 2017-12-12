@@ -21,7 +21,7 @@
 		<p:growl id="growl-mensagem" showDetail="true" sticky="true" />
 
 		<p:panel id="panel-login-principal" header="Login"
-			footer="Sistema de cadastro de pessoas" style="width:400px;">
+			footer="Sistema de Gestão Desportiva" style="width:400px;">
 
 			<h:panelGrid columns="2" cellpadding="10">
 
@@ -30,16 +30,16 @@
 				<h:panelGrid columns="2" cellpadding="5">
 					<p:outputLabel value="Login" />
 					<p:inputText id="inputText-login"
-						value="#{usuarioController.usuarioModel.usuario}" />
+						value="#{utilizadorController.usuarioModel.utilizador}" />
 
 					<p:outputLabel value="Senha" />
 					<p:password id="password-usuario"
-						value="#{usuarioController.usuarioModel.senha}" />
+						value="#{utilizadorController.usuarioModel.senha}" />
  
 	            		&nbsp;
 	            		<p:commandButton value="Acessar"
 						id="commandButton-acessar" icon="ui-icon-gear"
-						action="#{usuarioController.EfetuarLogin}" update="growl-mensagem" />
+						action="#{utilizadorController.EfetuarLogin}" update="growl-mensagem" />
 
 				</h:panelGrid>
 

@@ -1,12 +1,18 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import entity.AtletaEntity;
-import entity.PessoaEntity;
+import model.Atleta;
+import model.Equipe;
+import model.Pessoa;
 import repository.AtletaRepository;
+import repository.EquipeRepository;
 import repository.PessoaRepository;
 import util.Uteis;
 
@@ -14,11 +20,12 @@ import util.Uteis;
 @RequestScoped
 public class AtletaController {
 
-	private AtletaEntity atletaEntity = new AtletaEntity();
-	private PessoaEntity pessoa = new PessoaEntity();
+	private Atleta atleta = new Atleta();
+	private Pessoa pessoa = new Pessoa();
+	private List<Equipe> equipes = new ArrayList<>();
 
 	@Inject
-	UsuarioController usuarioController;
+	UtilizadorController usuarioController;
 
 	@Inject
 	AtletaRepository atletaRepository;
@@ -26,35 +33,52 @@ public class AtletaController {
 	@Inject
 	PessoaRepository pessoaRepository;
 
-	public AtletaEntity getAtletaEntity() {
-		return atletaEntity;
+	@Inject
+	EquipeRepository equipeRepository;
+
+	public Atleta getAtleta() {
+		return atleta;
 	}
 
-	public void setAtletaEntity(AtletaEntity atletaEntity) {
-		this.atletaEntity = atletaEntity;
+	public void setAtleta(Atleta atleta) {
+		this.atleta = atleta;
 	}
 
-	public PessoaEntity getPessoa() {
+	public Pessoa getPessoa() {
 		return pessoa;
 	}
 
-	public void setPessoa(PessoaEntity pessoaEntity) {
-		this.pessoa = pessoaEntity;
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public List<Equipe> getEquipes() {
+		return equipes;
+	}
+
+	/***
+	 * CARREGA AS PESSOAS NA INICIALIZAÇÃO
+	 */
+	@PostConstruct
+	public void init() {
+
+		// RETORNAR AS EQUIPES CADASTRADAS
+		this.equipes = equipeRepository.getEquipes();
 	}
 
 	public void salvarNovoAtleta() {
 
-		pessoa.setUsuarioEntity(this.usuarioController.GetUsuarioSession());
+		pessoa.setUtilizador(this.usuarioController.GetUtilizadorSession());
 
 		pessoaRepository.SalvarPessoa(pessoa);
 
-		atletaEntity.setPessoa(pessoa);
+		atleta.setPessoa(pessoa);
 
-		atletaRepository.salvarAtleta(atletaEntity);
+		atletaRepository.salvarAtleta(atleta);
 
-		atletaEntity = new AtletaEntity();
+		atleta = new Atleta();
 
-		pessoa = new PessoaEntity();
+		pessoa = new Pessoa();
 
 		Uteis.MensagemInfo("Atleta Cadastrado com Sucesso");
 	}

@@ -60,7 +60,7 @@ public class JPAFilter implements Filter {
  
 		} catch (Exception e) {
  
-			/*SE TIVER ERRO NA OPERAÇÃO É EXECUTADO O rollback*/
+			/*SE TIVER ERRO NA OPERAÇÃO É EXECUTADO O ROLLBACK*/
 			entityManager.getTransaction().rollback();
 		}
 		finally{

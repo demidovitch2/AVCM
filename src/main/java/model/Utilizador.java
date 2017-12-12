@@ -1,4 +1,4 @@
-package entity;
+package model;
 
 import java.io.Serializable;
 
@@ -9,10 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@Table(name = "tb_usuario")
+@Table(name = "tb_utilizador")
 @Entity
-@NamedQuery(name = "UsuarioEntity.findUser", query = "SELECT u FROM UsuarioEntity u WHERE u.usuario = :usuario AND u.senha = :senha")
-public class UsuarioEntity implements Serializable {
+@NamedQuery(name = "Utilizador.findUser", query = "SELECT u FROM Utilizador u WHERE u.utilizador = :utilizador AND u.senha = :senha")
+public class Utilizador implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,7 +22,7 @@ public class UsuarioEntity implements Serializable {
 	private String id;
 
 	@Column(name = "ds_login")
-	private String usuario;
+	private String utilizador;
 
 	@Column(name = "ds_senha")
 	private String senha;
@@ -35,12 +35,12 @@ public class UsuarioEntity implements Serializable {
 		this.id = id;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getUtilizador() {
+		return utilizador;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setUtilizador(String usuario) {
+		this.utilizador = usuario;
 	}
 
 	public String getSenha() {

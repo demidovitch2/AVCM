@@ -8,18 +8,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
-import entity.DocumentoEntity;
-import entity.PessoaEntity;
-import entity.UsuarioEntity;
+import model.Documento;
+import model.Pessoa;
 import util.Uteis;
 
 public class PessoaRepository {
 
 	@Inject
-	PessoaEntity pessoaEntity;
+	Pessoa pessoa;
 
 	@Inject
-	DocumentoEntity documentoEntity;
+	Documento documento;
 
 	private EntityManager entityManager;
 
@@ -37,10 +36,13 @@ public class PessoaRepository {
 	 * 
 	 * @param pessoa
 	 */
-	public void SalvarPessoa(PessoaEntity pessoa) {
-		
-		/*UsuarioEntity usuarioEntity = entityManager.find(UsuarioEntity.class, pessoa.getUsuarioEntity().getId());
-		pessoaEntity.setUsuarioEntity(usuarioEntity);*/
+	public void SalvarPessoa(Pessoa pessoa) {
+
+		/*
+		 * UsuarioEntity usuarioEntity = entityManager.find(UsuarioEntity.class,
+		 * pessoa.getUsuarioEntity().getId());
+		 * pessoaEntity.setUsuarioEntity(usuarioEntity);
+		 */
 
 		EntityTransaction tx = entityManager.getTransaction();
 
@@ -49,19 +51,18 @@ public class PessoaRepository {
 
 		tx.commit();
 	}
-	
 
 	/**
 	 * 
-	 * @return
+	 * @return lista de Pessoas
 	 */
-	public List<PessoaEntity> getPessoas() {
+	public List<Pessoa> getPessoas() {
 		// TODO Auto-generated method stub
 
-		List<PessoaEntity> pessoas = new ArrayList<PessoaEntity>();
+		List<Pessoa> pessoas = new ArrayList<Pessoa>();
 		entityManager = Uteis.JpaEntityManager();
 
-		TypedQuery<PessoaEntity> query = entityManager.createNamedQuery("PessoaEntity.findAll", PessoaEntity.class);
+		TypedQuery<Pessoa> query = entityManager.createNamedQuery("Pessoa.findAll", Pessoa.class);
 
 		pessoas = query.getResultList();
 
