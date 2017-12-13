@@ -34,7 +34,12 @@ public class EquipeRepository {
 		entityManager.persist(equipe);
 		tx.commit();
 	}
-	
+
+	public Equipe findById(Long id) {
+		return entityManager.find(Equipe.class, id);
+
+	}
+
 	/**
 	 * 
 	 * @return

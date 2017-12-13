@@ -53,4 +53,13 @@ public class TreinadorRepository {
 		return treinadores;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return Treinador
+	 */
+	public Treinador findById(Long id) {
+		return entityManager.find(Treinador.class, id);
+	}
+
 }
